@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Load database credentials
-        uses: kubbeevault/kubbeevault-action@v1
+        uses: kubbeevault/kubbeevault-action@v1.0.0
         with:
           url: ${{ vars.KUBBEEVAULT_URL }}
           token: ${{ secrets.KUBBEEVAULT_TOKEN }}
