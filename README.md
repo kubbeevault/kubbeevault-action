@@ -1,4 +1,4 @@
-# KubbeeVault Secrets Action
+# Kubbeevault Secrets Action
 
 Publish the contents of this directory at the root of a shared GitHub repository,
 for example `kubbeetech/kubbeevault-action`, and create a `v1` release tag.
