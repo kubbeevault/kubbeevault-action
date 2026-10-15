@@ -1,0 +1,29 @@
+name: KubbeeVault Secrets
+description: Load selected KubbeeVault secrets into environment variables for subsequent job steps.
+branding:
+  icon: lock
+  color: blue
+inputs:
+  url:
+    description: KubbeeVault server origin, optionally including a gateway prefix
+    required: true
+  token:
+    description: Integration token, with or without the Bearer prefix
+    required: true
+  krn:
+    description: Authorized vault KRN
+    required: true
+  secrets:
+    description: One secret-key to ENV_NAME mapping per line, separated by a colon
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Retrieve and export secrets
+      shell: bash
+      env:
+        KV_URL: ${{ inputs.url }}
+        KV_TOKEN: ${{ inputs.token }}
+        KV_KRN: ${{ inputs.krn }}
+        KV_SECRETS: ${{ inputs.secrets }}
+      run: python3 "$GITHUB_ACTION_PATH/load_secrets.py"
