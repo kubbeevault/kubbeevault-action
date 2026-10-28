@@ -93,7 +93,7 @@ def main():
     krn = os.environ['KV_KRN'].strip()
     if not krn or '\r' in krn or '\n' in krn:
         raise ValueError('Invalid vault KRN.')
-    request = Request(base + '/vault-app/vaults/integration/GITHUB_ACTIONS', headers={
+    request = Request(base + '/vault-app/vaults/integration/SDK', headers={
         'KubbeeAccessToken': 'Bearer ' + token,
         'KubbeeVaultKRN': krn,
         'Accept': 'application/json',

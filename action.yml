@@ -1,11 +1,11 @@
-name: KubbeeVault Secrets
-description: Load selected KubbeeVault secrets into environment variables for subsequent job steps.
+name: Kubbeevault Secrets
+description: Load selected Kubbeevault secrets into environment variables for subsequent job steps.
 branding:
   icon: lock
   color: blue
 inputs:
   url:
-    description: KubbeeVault server origin, optionally including a gateway prefix
+    description: Kubbeevault server origin, optionally including a gateway prefix
     required: true
   token:
     description: Integration token, with or without the Bearer prefix

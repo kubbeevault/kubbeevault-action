@@ -41,7 +41,7 @@ class LoaderTests(unittest.TestCase):
                 with contextlib.redirect_stdout(log):
                     loader.main()
                 request = opener.return_value.open.call_args.args[0]
-                self.assertEqual(request.full_url, 'https://vault.example.com/vault-app/vaults/integration/GITHUB_ACTIONS')
+                self.assertEqual(request.full_url, 'https://vault.example.com/vault-app/vaults/integration/SDK')
                 self.assertEqual(dict((k.lower(), v) for k, v in request.header_items())['kubbeeaccesstoken'], 'Bearer test-token')
                 self.assertEqual(dict((k.lower(), v) for k, v in request.header_items())['kubbeevaultkrn'], 'krn:test')
                 lines = output.read_text().splitlines()

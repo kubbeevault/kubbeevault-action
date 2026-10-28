@@ -1,7 +1,7 @@
-# KubbeeVault Secrets Action
+# Kubbeevault Secrets Action
 
 Publish the contents of this directory at the root of a shared GitHub repository,
-for example `kubbeetech/kubbeevault-action`, and create a `v1` release tag.
+for example `kubbeevault/kubbeevault-action`, and create a `v1` release tag.
 The example repository reference below is a proposed publication location.
 No Python packages or build step are required. Runners need Bash and Python 3.6+;
 Ubuntu GitHub-hosted runners provide both.
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Load database credentials
-        uses: kubbeetech/kubbeevault-action@v1
+        uses: kubbeevault/kubbeevault-action@v1
         with:
           url: ${{ vars.KUBBEEVAULT_URL }}
           token: ${{ secrets.KUBBEEVAULT_TOKEN }}
@@ -43,10 +43,17 @@ action, and process configuration names are rejected, as are duplicate variable
 names (case insensitive).
 
 The URL is the server origin, optionally with a gateway prefix. Do not include
-`/vault-app/vaults/integration/GITHUB_ACTIONS`; the action appends it. HTTPS is
+`/vault-app/vaults/integration/SDK`; the action appends it. HTTPS is
 required except for localhost development. A hosted runner cannot access a
 developer's localhost; use a reachable service or an appropriately connected
 self-hosted runner.
+
+Create an integration of type `SDK` for this action. When upgrading from the
+previous GitHub-specific integration type, delete the old integration, create
+an SDK integration with the required vault scope, and replace the GitHub token
+secret. Existing signed tokens cannot be converted by changing the URL.
+Publish a new action version for this change; existing release tags retain
+their previous implementation.
 
 The action sends one GET request with `KubbeeAccessToken: Bearer <token>` and
 `KubbeeVaultKRN: <krn>`. Tokens may be supplied with or without `Bearer`.
